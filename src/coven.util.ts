@@ -59,8 +59,12 @@ export function getCollectible(collectionAddress: Bytes,
     collectible.creator = creatorId;
     collectible.owner = creatorId;
     collectible.created = timeCreated;
-    collectible.descriptorURI = Coven.bind(Address.fromBytes(collectionAddress)).tokenURI(tokenId)
-
+    
+    let covenContract = Coven.bind(Address.fromBytes(collectionAddress));
+    let callResult = covenContract.try_tokenURI(tokenId);
+    if(!callResult.reverted){
+        collectible.descriptorURI = callResult.value;
+    }
     collectible.save()
 
   }

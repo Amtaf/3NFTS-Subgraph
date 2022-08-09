@@ -7,9 +7,9 @@ import { Account, Collection, Collectible } from "../generated/schema";
 
 //function to load/create account address if inexistent
 export function findAccount(address: Address): Account {
-  let account = Account.load(address.toHex());
+  let account = Account.load(address.toHexString());
   if(!account){
-    account = new Account(address.toHex());
+    account = new Account(address.toHexString());
     account.address = address;
     account.save() 
   }
@@ -59,8 +59,12 @@ export function getCollectible(collectionAddress: Bytes,
     collectible.creator = creatorId;
     collectible.owner = creatorId;
     collectible.created = timeCreated;
-    collectible.descriptorURI = Bayc.bind(Address.fromBytes(collectionAddress)).tokenURI(tokenId)
 
+    let BaycContract = Bayc.bind(Address.fromBytes(collectionAddress));
+    let callResult = BaycContract.try_tokenURI(tokenId);
+    if(!callResult.reverted){
+        collectible.descriptorURI = callResult.value;
+    }
     collectible.save()
 
   }

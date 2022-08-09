@@ -4,8 +4,9 @@ import {
   ContractTransfer as ContractTransferEvent
 } from "../generated/Bayc/Bayc"
 import {
- 
-  Collectible
+ Account,
+  Collectible,
+  Collection
 } from "../generated/schema"
 
 
@@ -13,7 +14,7 @@ import { findAccount,getCollection,getCollectible } from "./bayc.util"
 
 
 //addresszero
-const zeroAddress = Address.fromString("0x0000000000000000000000000000000000000000");
+let zeroAddress = Address.fromString("0x0000000000000000000000000000000000000000");
 
 
 export function handleContractTransfer(event: ContractTransferEvent): void {

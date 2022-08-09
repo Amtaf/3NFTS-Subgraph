@@ -1,26 +1,22 @@
 type Account @entity {
   id: ID!
   address: Bytes!
+  collectibles: [Collectible!] @derivedFrom(field: "owner")
 }
 
 type Collectible @entity {
   id: ID!
-  collection: Collection!
-
+  tokenId: BigInt!
   owner: Account!
   creator: Account!
-
-  tokenId: BigInt!
+  collection: Collection!
   descriptorURI: String!
 
   #timestamps
   modified: BigInt
-  created: BigInt
+  created: BigInt!
   removed: BigInt
 
-  #Metadata
-  name: String
-  description: String
 
 }
 
@@ -29,30 +25,5 @@ type Collection @entity {
   collectionName: String!
   collectionSymbol: String! 
   collectionAddress: Bytes!
-}
-type ContractApproval @entity {
-  id: ID!
-  owner: Bytes! # address
-  approved: Bytes! # address
-  tokenId: BigInt! # uint256
-}
-
-type ContractApprovalForAll @entity {
-  id: ID!
-  owner: Bytes! # address
-  operator: Bytes! # address
-  approved: Boolean! # bool
-}
-
-type ContractOwnershipTransferred @entity {
-  id: ID!
-  previousOwner: Bytes! # address
-  newOwner: Bytes! # address
-}
-
-type ContractTransfer @entity {
-  id: ID!
-  from: Bytes! # address
-  to: Bytes! # address
-  tokenId: BigInt! # uint256
+  collectibles: [Collectible!] @derivedFrom(field: "collection")
 }
