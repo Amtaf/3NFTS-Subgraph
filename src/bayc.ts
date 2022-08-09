@@ -1,24 +1,22 @@
 import { Address, BigInt } from "@graphprotocol/graph-ts"
 import {
-  Transfer
-} from "../generated/Coven/Coven"
-import { Collectible } from "../generated/schema"
+  
+  ContractTransfer as ContractTransferEvent
+} from "../generated/Bayc/Bayc"
+import {
+ 
+  Collectible
+} from "../generated/schema"
 
-import { findAccount,getCollection,getCollectible } from "./coven.util"
 
-  // - contract.owner(...)
-  // - contract.ownerOf(...)
-  // - contract.royaltyInfo(...)
-  // - contract.supportsInterface(...)
-  // - contract.symbol(...)
-  // - contract.tokenURI(...)
-  // - contract.verificationHash(...)
+import { findAccount,getCollection,getCollectible } from "./bayc.util"
+
 
 //addresszero
 const zeroAddress = Address.fromString("0x0000000000000000000000000000000000000000");
 
 
-export function handleTransfer(event: Transfer): void {
+export function handleContractTransfer(event: ContractTransferEvent): void {
   let collection = getCollection(event.address);
   let tokenReciever = findAccount(event.params.to);
   if(event.params.from == zeroAddress){

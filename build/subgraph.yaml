@@ -1,6 +1,6 @@
 specVersion: 0.0.4
 schema:
-  file: ./schema.graphql
+  file: schema.graphql
 dataSources:
   - kind: ethereum
     name: Coven
@@ -20,11 +20,11 @@ dataSources:
         - Transfer
       abis:
         - name: Coven
-          file: ./abis/Coven.json
+          file: Coven\abis\Coven.json
       eventHandlers:
         - event: Transfer(indexed address,indexed address,indexed uint256)
           handler: handleTransfer
-      file: ./src/coven.ts
+      file: Coven\Coven.wasm
   - kind: ethereum
     name: Bayc
     network: mainnet
@@ -43,8 +43,8 @@ dataSources:
         - ContractTransfer
       abis:
         - name: Bayc
-          file: ./abis/Bayc.json
+          file: Bayc\abis\Bayc.json
       eventHandlers:
         - event: ContractTransfer(indexed address,indexed address,indexed uint256)
           handler: handleContractTransfer
-      file: ./src/bayc.ts
+      file: Bayc\Bayc.wasm

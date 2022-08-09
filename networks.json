@@ -2,6 +2,9 @@
   "mainnet": {
     "Coven": {
       "address": "0x5180db8F5c931aaE63c74266b211F580155ecac8"
+    },
+    "Contract": {
+      "address": "0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D"
     }
   }
 }
