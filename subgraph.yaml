@@ -31,20 +31,20 @@ dataSources:
     source:
       address: "0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D"
       abi: Bayc
-      startBlock: 14586300
+      startBlock: 15394684
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
-        - ContractApproval
-        - ContractApprovalForAll
-        - ContractOwnershipTransferred
-        - ContractTransfer
+        - Approval
+        - ApprovalForAll
+        - OwnershipTransferred
+        - Transfer
       abis:
         - name: Bayc
           file: ./abis/Bayc.json
-      eventHandlers:
-        - event: ContractTransfer(indexed address,indexed address,indexed uint256)
-          handler: handleContractTransfer
+      eventHandlers: 
+        - event: Transfer(indexed address,indexed address,indexed uint256)
+          handler: handleTransfer
       file: ./src/bayc.ts

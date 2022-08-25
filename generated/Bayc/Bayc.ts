@@ -10,16 +10,16 @@ import {
   BigInt
 } from "@graphprotocol/graph-ts";
 
-export class ContractApproval extends ethereum.Event {
-  get params(): ContractApproval__Params {
-    return new ContractApproval__Params(this);
+export class Approval extends ethereum.Event {
+  get params(): Approval__Params {
+    return new Approval__Params(this);
   }
 }
 
-export class ContractApproval__Params {
-  _event: ContractApproval;
+export class Approval__Params {
+  _event: Approval;
 
-  constructor(event: ContractApproval) {
+  constructor(event: Approval) {
     this._event = event;
   }
 
@@ -36,16 +36,16 @@ export class ContractApproval__Params {
   }
 }
 
-export class ContractApprovalForAll extends ethereum.Event {
-  get params(): ContractApprovalForAll__Params {
-    return new ContractApprovalForAll__Params(this);
+export class ApprovalForAll extends ethereum.Event {
+  get params(): ApprovalForAll__Params {
+    return new ApprovalForAll__Params(this);
   }
 }
 
-export class ContractApprovalForAll__Params {
-  _event: ContractApprovalForAll;
+export class ApprovalForAll__Params {
+  _event: ApprovalForAll;
 
-  constructor(event: ContractApprovalForAll) {
+  constructor(event: ApprovalForAll) {
     this._event = event;
   }
 
@@ -62,16 +62,16 @@ export class ContractApprovalForAll__Params {
   }
 }
 
-export class ContractOwnershipTransferred extends ethereum.Event {
-  get params(): ContractOwnershipTransferred__Params {
-    return new ContractOwnershipTransferred__Params(this);
+export class OwnershipTransferred extends ethereum.Event {
+  get params(): OwnershipTransferred__Params {
+    return new OwnershipTransferred__Params(this);
   }
 }
 
-export class ContractOwnershipTransferred__Params {
-  _event: ContractOwnershipTransferred;
+export class OwnershipTransferred__Params {
+  _event: OwnershipTransferred;
 
-  constructor(event: ContractOwnershipTransferred) {
+  constructor(event: OwnershipTransferred) {
     this._event = event;
   }
 
@@ -84,16 +84,16 @@ export class ContractOwnershipTransferred__Params {
   }
 }
 
-export class ContractTransfer extends ethereum.Event {
-  get params(): ContractTransfer__Params {
-    return new ContractTransfer__Params(this);
+export class Transfer extends ethereum.Event {
+  get params(): Transfer__Params {
+    return new Transfer__Params(this);
   }
 }
 
-export class ContractTransfer__Params {
-  _event: ContractTransfer;
+export class Transfer__Params {
+  _event: Transfer;
 
-  constructor(event: ContractTransfer) {
+  constructor(event: Transfer) {
     this._event = event;
   }
 

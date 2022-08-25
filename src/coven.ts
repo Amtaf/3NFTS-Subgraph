@@ -16,12 +16,13 @@ import { findAccount,getCollection,getCollectible } from "./coven.util"
 
 //addresszero
 const zeroAddress = Address.fromString("0x0000000000000000000000000000000000000000");
+const minterAddress = Address.fromString("0x5f309c1116ce21dbefbcc36ff2a9c8751f15ac7e");
 
 
 export function handleTransfer(event: Transfer): void {
   let collection = getCollection(event.address);
   let tokenReciever = findAccount(event.params.to);
-  if(event.params.from == zeroAddress){
+  if(event.params.from == Address.fromString("0x5f309c1116ce21dbefbcc36ff2a9c8751f15ac7e")){
     getCollectible(collection.collectionAddress,
       collection.id,
       event.params.tokenId,

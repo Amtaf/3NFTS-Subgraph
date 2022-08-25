@@ -60,7 +60,12 @@ export function getCollectible(collectionAddress: Bytes,
     collectible.owner = creatorId;
     collectible.created = timeCreated;
 
+    
     let BaycContract = Bayc.bind(Address.fromBytes(collectionAddress));
+    let name = BaycContract.try_name()
+    if(!name.reverted){
+      collectible.name = name.value;
+    }
     let callResult = BaycContract.try_tokenURI(tokenId);
     if(!callResult.reverted){
         collectible.descriptorURI = callResult.value;

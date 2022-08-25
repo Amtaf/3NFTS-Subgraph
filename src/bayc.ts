@@ -1,26 +1,23 @@
 import { Address, BigInt } from "@graphprotocol/graph-ts"
-import {
-  
-  ContractTransfer as ContractTransferEvent
-} from "../generated/Bayc/Bayc"
-import {
- Account,
-  Collectible,
-  Collection
-} from "../generated/schema"
 
+import {
+ Transfer
+} from "../generated/Bayc/Bayc"
+import { Collectible } from "../generated/schema"
 
 import { findAccount,getCollection,getCollectible } from "./bayc.util"
 
 
-//addresszero
-let zeroAddress = Address.fromString("0x0000000000000000000000000000000000000000");
+//startblock 15394684
+
+const zeroAddress = Address.fromString("0x0000000000000000000000000000000000000000");
+const minterAddress = Address.fromString("0x8ae57a027c63fca8070d1bf38622321de8004c67");
 
 
-export function handleContractTransfer(event: ContractTransferEvent): void {
+export function handleTransfer(event: Transfer): void {
   let collection = getCollection(event.address);
   let tokenReciever = findAccount(event.params.to);
-  if(event.params.from == zeroAddress){
+  if(event.params.from == Address.fromString("0x8ae57a027c63fca8070d1bf38622321de8004c67")){
     getCollectible(collection.collectionAddress,
       collection.id,
       event.params.tokenId,
@@ -45,3 +42,4 @@ export function handleContractTransfer(event: ContractTransferEvent): void {
     }
   }
 }
+

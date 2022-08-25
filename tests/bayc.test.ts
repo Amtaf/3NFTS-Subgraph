@@ -7,10 +7,10 @@ import {
   afterAll
 } from "matchstick-as/assembly/index"
 import { Address, BigInt } from "@graphprotocol/graph-ts"
-import { ContractApproval } from "../generated/schema"
-import { ContractApproval as ContractApprovalEvent } from "../generated/Contract/Contract"
-import { handleContractApproval } from "../src/contract"
-import { createContractApprovalEvent } from "./contract-utils"
+import { BaycApproval } from "../generated/schema"
+import { BaycApproval as BaycApprovalEvent } from "../generated/Bayc/Bayc"
+import { handleBaycApproval } from "../src/bayc"
+import { createBaycApprovalEvent } from "./bayc-utils"
 
 // Tests structure (matchstick-as >=0.5.0)
 // https://thegraph.com/docs/en/developer/matchstick/#tests-structure-0-5-0
@@ -22,12 +22,8 @@ describe("Describe entity assertions", () => {
       "0x0000000000000000000000000000000000000001"
     )
     let tokenId = BigInt.fromI32(234)
-    let newContractApprovalEvent = createContractApprovalEvent(
-      owner,
-      approved,
-      tokenId
-    )
-    handleContractApproval(newContractApprovalEvent)
+    let newBaycApprovalEvent = createBaycApprovalEvent(owner, approved, tokenId)
+    handleBaycApproval(newBaycApprovalEvent)
   })
 
   afterAll(() => {
@@ -37,24 +33,24 @@ describe("Describe entity assertions", () => {
   // For more test scenarios, see:
   // https://thegraph.com/docs/en/developer/matchstick/#write-a-unit-test
 
-  test("ContractApproval created and stored", () => {
-    assert.entityCount("ContractApproval", 1)
+  test("BaycApproval created and stored", () => {
+    assert.entityCount("BaycApproval", 1)
 
     // 0xa16081f360e3847006db660bae1c6d1b2e17ec2a is the default address used in newMockEvent() function
     assert.fieldEquals(
-      "ContractApproval",
+      "BaycApproval",
       "0xa16081f360e3847006db660bae1c6d1b2e17ec2a-1",
       "owner",
       "0x0000000000000000000000000000000000000001"
     )
     assert.fieldEquals(
-      "ContractApproval",
+      "BaycApproval",
       "0xa16081f360e3847006db660bae1c6d1b2e17ec2a-1",
       "approved",
       "0x0000000000000000000000000000000000000001"
     )
     assert.fieldEquals(
-      "ContractApproval",
+      "BaycApproval",
       "0xa16081f360e3847006db660bae1c6d1b2e17ec2a-1",
       "tokenId",
       "234"

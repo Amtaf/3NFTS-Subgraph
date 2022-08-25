@@ -46,7 +46,8 @@ export function getCollectible(collectionAddress: Bytes,
   collectionId: string, 
   tokenId: BigInt, 
   creatorId: string,
-  timeCreated: BigInt
+  timeCreated: BigInt,
+  
   ): Collectible{
   let collectibleId = collectionAddress.toHexString()
   .concat("-")
@@ -60,7 +61,12 @@ export function getCollectible(collectionAddress: Bytes,
     collectible.owner = creatorId;
     collectible.created = timeCreated;
     
+
     let covenContract = Coven.bind(Address.fromBytes(collectionAddress));
+    let name = covenContract.try_name()
+    if(!name.reverted){
+        collectible.name = name.value;
+      }
     let callResult = covenContract.try_tokenURI(tokenId);
     if(!callResult.reverted){
         collectible.descriptorURI = callResult.value;
