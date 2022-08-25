@@ -14,7 +14,7 @@ import { findAccount,getCollection,getCollectible } from "./coven.util"
   // - contract.tokenURI(...)
   // - contract.verificationHash(...)
 
-//addresszero
+//addresszero minter/burner
 const zeroAddress = Address.fromString("0x0000000000000000000000000000000000000000");
 const minterAddress = Address.fromString("0x5f309c1116ce21dbefbcc36ff2a9c8751f15ac7e");
 
