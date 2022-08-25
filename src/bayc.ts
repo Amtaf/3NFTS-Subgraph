@@ -17,7 +17,7 @@ const minterAddress = Address.fromString("0x8ae57a027c63fca8070d1bf38622321de800
 export function handleTransfer(event: Transfer): void {
   let collection = getCollection(event.address);
   let tokenReciever = findAccount(event.params.to);
-  if(event.params.from == Address.fromString("0x8ae57a027c63fca8070d1bf38622321de8004c67")){
+  if(event.params.from == minterAddress){
     getCollectible(collection.collectionAddress,
       collection.id,
       event.params.tokenId,
